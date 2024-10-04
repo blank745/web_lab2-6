@@ -157,7 +157,87 @@
         </section>
 
     </main>
+
+<form method="post" action=" https://httpbin.org/post">
     
+        <h1>Сделать заказ</h1>
+    
+        <div>
+            
+            <div id="order">
+                
+                <h2>Ваш заказ</h2>
+                
+                <label>Супы</label>
+                <select name="soup-choice">
+                    <option value=0 selected disabled hidden>--Выберите суп--</option>
+                    <option value=1>Гаспачо</option>
+                    <option value=2>Грибной суп-пюре</option>
+                    <option value=3>Норвежский суп</option>
+                </select>
+                
+                <label>Главное блюдо</label>
+                <select name="main-dish-choice">
+                    <option value=0 selected disabled hidden>--Выберите главное блюдо--</option>
+                    <option value=1>Жареная картошка</option>
+                    <option value=2>Лазанья</option>
+                    <option value=3>Котлеты из курицы с картофельным пюре</option>
+                </select>
+                
+                <label>Напиток</label>
+                <select name="drink-choice">
+                    <option value=0 selected disabled hidden>--Выберите напиток--</option>
+                    <option value=1>Апельсиновый сок</option>
+                    <option value=2>Яблочный сок</option>
+                    <option value=3>Морковный сок</option>
+                </select>
+                
+                <label>Комментарии к заказу</label>
+                <textarea></textarea>
+                
+            </div>
+            
+            <div id="client-info">
+                
+                <h2>Ваши данные</h2>
+                <label>Имя</label>
+                <input type="text" name="name-inp">
+                
+                <label>Email</label>
+                <input type="email" name="email-inp">
+                
+                <div class="left-placed-labels-inputs">
+                    <input type="checkbox" name="ann-inp">
+                    <label>Получать информацию о скидках и акцциях</label>
+                </div>
+                
+                <label>Номер телефона</label>
+                <input type="tel" name="phone-inp">
+                
+                <label>Адрес доставки</label>
+                <input type="text" name="address-inp">
+                
+                <label>Время доставки:</label>
+                <div class="left-placed-labels-inputs">
+                    <input type="radio" value=1 name="delivery-time-type">
+                    <label>Как можно скорее</label>
+                    
+                    <input type="radio" value=2 name="delivery-time-type">
+                    <label>К указанному времени</label>
+                </div>
+                
+                <label>Укажите время доставки</label>
+                <input type="time" step=300 max="23:00" min="07:00" name="time-delivery-choice">
+                <div id = 'buttons-block'>
+                    <button type="reset">Сбросить</button>
+                    <button type="submit">Отправить</button>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </form>    
 
     <footer id="contacts">
 
