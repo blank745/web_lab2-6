@@ -169,7 +169,7 @@
                 <h2>Ваш заказ</h2>
                 
                 <label>Супы</label>
-                <select name="soup-choice">
+                <select name="soup-choice" required>
                     <option value=0 selected disabled hidden>--Выберите суп--</option>
                     <option value=1>Гаспачо</option>
                     <option value=2>Грибной суп-пюре</option>
@@ -177,7 +177,7 @@
                 </select>
                 
                 <label>Главное блюдо</label>
-                <select name="main-dish-choice">
+                <select name="main-dish-choice" required>
                     <option value=0 selected disabled hidden>--Выберите главное блюдо--</option>
                     <option value=1>Жареная картошка</option>
                     <option value=2>Лазанья</option>
@@ -185,7 +185,7 @@
                 </select>
                 
                 <label>Напиток</label>
-                <select name="drink-choice">
+                <select name="drink-choice" required>
                     <option value=0 selected disabled hidden>--Выберите напиток--</option>
                     <option value=1>Апельсиновый сок</option>
                     <option value=2>Яблочный сок</option>
@@ -201,21 +201,21 @@
                 
                 <h2>Ваши данные</h2>
                 <label>Имя</label>
-                <input type="text" name="name-inp">
+                <input type="text" name="name-inp" required>
                 
                 <label>Email</label>
-                <input type="email" name="email-inp">
+                <input type="email" name="email-inp" required>
                 
                 <div class="left-placed-labels-inputs">
                     <input type="checkbox" name="ann-inp">
-                    <label>Получать информацию о скидках и акцциях</label>
+                    <label>Получать информацию о скидках и акциях</label>
                 </div>
                 
                 <label>Номер телефона</label>
-                <input type="tel" name="phone-inp">
+                <input type="tel" name="phone-inp" required>
                 
                 <label>Адрес доставки</label>
-                <input type="text" name="address-inp">
+                <input type="text" name="address-inp" required>
                 
                 <label>Время доставки:</label>
                 <div class="left-placed-labels-inputs">
@@ -227,7 +227,7 @@
                 </div>
                 
                 <label>Укажите время доставки</label>
-                <input type="time" step=300 max="23:00" min="07:00" name="time-delivery-choice">
+                <input type="time" step=300 max="23:00" min="07:00" name="time-delivery-choice" required>
                 <div id = 'buttons-block'>
                     <button type="reset">Сбросить</button>
                     <button type="submit">Отправить</button>
