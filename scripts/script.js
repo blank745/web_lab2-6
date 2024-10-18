@@ -1,0 +1,115 @@
+let soup_sum = 0;
+let main_dish_sum = 0;
+let drink_sum = 0;
+let sum = 0;
+
+
+function select_dish(name, id, price){
+    option1 = document.querySelector(`select[name='${name}'] option[value='1']`);
+    option2 = document.querySelector(`select[name='${name}'] option[value='2']`);
+    option3 = document.querySelector(`select[name='${name}'] option[value='3']`);
+    option1.removeAttribute('selected');
+    option2.removeAttribute('selected');
+    option3.removeAttribute('selected');
+    option = document.querySelector(`select[name='${name}'] option[value='${id}']`);
+    option.setAttribute('selected', true);
+    if (name == 'soup'){
+        soup_sum = price;
+    }
+    else if (name == 'main_dish'){
+        main_dish_sum = price;
+    }
+    else{
+        drink_sum = price;
+    }
+    sum = soup_sum + main_dish_sum + drink_sum
+    document.getElementById('order_h2').innerHTML = `Ваш заказ стоит ${sum} рублей`
+}
+
+let soup_block = document.getElementById('soup')
+let div_blocks = ''
+soup_array.forEach(dish => {
+    div_blocks += `
+                    <div onclick="select_dish('${dish.category}', ${soup_array.indexOf(dish)+1}, ${dish.price})" data-dish="${dish.keyword}">
+                    <img src="${dish.image}" alt="soup">
+                    <p class="price">${dish.price} рублей</p>
+                    <p class="name">${dish.name}</p>
+                    <p class="mass">${dish.count}</p>
+                    <button>Добавить</button>
+                    </div>
+    `
+});
+soup_block.innerHTML = `
+    <h2>Выберите суп</h2>
+    <div>
+    ${div_blocks}
+    </div>
+`
+
+let main_dish_block = document.getElementById('main_dish')
+div_blocks = ''
+dishes_array.forEach(dish => {
+    div_blocks += `
+                    <div onclick="select_dish('${dish.category}', ${dishes_array.indexOf(dish)+1}, ${dish.price})" data-dish="${dish.keyword}">
+                    <img src="${dish.image}" alt="soup">
+                    <p class="price">${dish.price} рублей</p>
+                    <p class="name">${dish.name}</p>
+                    <p class="mass">${dish.count}</p>
+                    <button>Добавить</button>
+                    </div>
+    `
+});
+main_dish_block.innerHTML = `
+    <h2>Выберите главное блюдо</h2>
+    <div>
+    ${div_blocks}
+    </div>
+`
+
+let drink_block = document.getElementById('drink')
+div_blocks = ''
+drinks_array.forEach(dish => {
+    div_blocks += `
+                    <div onclick="select_dish('${dish.category}', ${drinks_array.indexOf(dish)+1}, ${dish.price})" data-dish="${dish.keyword}">
+                    <img src="${dish.image}" alt="soup">
+                    <p class="price">${dish.price} рублей</p>
+                    <p class="name">${dish.name}</p>
+                    <p class="mass">${dish.count}</p>
+                    <button>Добавить</button>
+                    </div>
+    `
+});
+
+drink_block.innerHTML = `
+    <h2>Выберите напиток</h2>
+    <div>
+    ${div_blocks}
+    </div>
+`
+
+window.onload = function() {
+    let time_radio_buttons = document.getElementsByName('delivery-time-type');
+
+    let del_time = document.getElementById('time-delivery-choice');
+
+    let fast_button = time_radio_buttons[0].value == 1 ? time_radio_buttons[0] : time_radio_buttons[1]; //определяем кнопку "как можно быстрее"
+
+    let time_required = document.getElementById('delivery-time');
+
+    function check_as_fast() {
+        
+        if (fast_button.checked) {
+            del_time.style.visibility = 'hidden';
+            time_required.required = false; //убираем требование на присутствие времени, иначе невозможно отослать форму!
+        } else {
+            del_time.style.visibility = 'visible';
+            time_required.required = true;
+        }
+    }
+
+    time_radio_buttons.forEach(radio => { //добавляем listener на все наши radio input, при нажатии проверяется какая именно нажата (см. функцию check_as_fast() )
+        radio.addEventListener('click', check_as_fast)
+    });
+
+}
+
