@@ -189,3 +189,7 @@ button:hover{
 textarea{
     height: 30%;
 }
+
+.dishes_input {
+    display: none;
+}

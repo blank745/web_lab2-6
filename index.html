@@ -35,36 +35,41 @@
         <div>
             <div id="order">
                     <h2 id="order_h2">Ваш заказ</h2>
-                    <label>Суп</label>
-                    <p id="soup_p">-- Выберите суп --</p>
-                    <label>Главное блюдо</label>
-                    <p id="main_dish_p">-- Выберите главное блюдо --</p>
-                    <label>Напиток</label>
-                    <p id="drink_p">-- Выберите напиток --</p>
 
-                <!-- Для корректной обработки заказа (отправки блюда на сервер) создаём select с отображением none, в которых будем менять блюда -->
-                    
-                <select name="soup" id="soup_inp" onchange="select_option('soup')" required style="display:none;">
-                    <option value="" selected disabled hidden>--Выберите суп--</option>
-                    <option value=1>Гаспачо - 195 рублей</option>
-                    <option value=2>Грибной суп-пюре - 185 рублей</option>
-                    <option value=3>Норвежский суп - 270 рублей</option>
-                </select>
-                <select name="main_dish" id="main_dish_inp" onchange="select_option('main_dish')" required style="display:none;">
-                    <option value="" selected disabled hidden>--Выберите главное блюдо--</option>
-                    <option value=1>Жареная картошка - 150 рублей</option>
-                    <option value=3>Лазанья - 385 рублей</option>
-                    <option value=2>Котлеты из курицы с картофельным пюре - 225 рублей</option>
-                </select>
-                <select name="drink" id="drink_inp" onchange="select_option('drink')" required style="display:none;">
-                    <option value="" selected disabled hidden>--Выберите напиток--</option>
-                    <option value=1>Апельсиновый сок - 120 рублей</option>
-                    <option value=3>Яблочный сок - 90 рублей</option>
-                    <option value=2>Морковный сок - 110 рублей</option>
-                </select>
-                
-                <label>Комментарии к заказу</label>
-                <textarea></textarea>
+                    <h2 id="nothing_is_chosen">Ничего не выбрано</h2>
+
+                    <div id="order_inputs" class="dishes_input">
+                            <label>Супы</label>
+                            <p id="soup_p">-- Выберите суп --</p>
+                            <label>Главное блюдо</label>
+                            <p id="main_dish_p">-- Выберите главное блюдо --</p>
+                            <label>Напиток</label>
+                            <p id="drink_p">-- Выберите напиток --</p>
+
+                        <!-- Для корректной обработки заказа (отправки блюда на сервер) создаём select с отображением none, в которых будем менять блюда -->
+                            
+                        <select name="soup" id="soup_inp" onchange="select_option('soup')" required style="display:none;">
+                            <option value="" selected disabled hidden>--Выберите суп--</option>
+                            <option value=1>Гаспачо - 195 рублей</option>
+                            <option value=2>Грибной суп-пюре - 185 рублей</option>
+                            <option value=3>Норвежский суп - 270 рублей</option>
+                        </select>
+                        <select name="main_dish" id="main_dish_inp" onchange="select_option('main_dish')" required style="display:none;">
+                            <option value="" selected disabled hidden>--Выберите главное блюдо--</option>
+                            <option value=1>Жареная картошка - 150 рублей</option>
+                            <option value=3>Лазанья - 385 рублей</option>
+                            <option value=2>Котлеты из курицы с картофельным пюре - 225 рублей</option>
+                        </select>
+                        <select name="drink" id="drink_inp" onchange="select_option('drink')" required style="display:none;">
+                            <option value="" selected disabled hidden>--Выберите напиток--</option>
+                            <option value=1>Апельсиновый сок - 120 рублей</option>
+                            <option value=3>Яблочный сок - 90 рублей</option>
+                            <option value=2>Морковный сок - 110 рублей</option>
+                        </select>
+                        
+                        <label>Комментарии к заказу</label>
+                        <textarea></textarea>
+                    </div>
             </div>
 
             <div id="client-info">
@@ -101,7 +106,7 @@
                 </div>
 
                 <div id = 'buttons-block'>
-                    <button type="reset" id="reset">Сбросить</button>
+                    <button type="reset" id="reset">Сбросить</button> <!--листенер на сброс блюд-->
                     <button type="submit" id="submit">Отправить</button>
                 </div>
                 
