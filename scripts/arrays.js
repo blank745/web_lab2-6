@@ -1,6 +1,6 @@
 soup_array = [
 {
-        
+    
     keyword: 'gaspacho',
     name: 'Гаспачо',
     price: 195,
@@ -9,8 +9,6 @@ soup_array = [
     image: 'media/gazpacho.jpg',
     select_id: 1
 }, 
-
-
 
 {
         
@@ -21,7 +19,8 @@ soup_array = [
     count: '330 г',
     image: 'media/mushroom_soup.jpg',
     select_id: 2
-}, 
+},
+ 
 {
         
     keyword: 'norwegian_soup',

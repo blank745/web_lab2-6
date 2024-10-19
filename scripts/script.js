@@ -3,8 +3,11 @@ let main_dish_sum = 0;
 let drink_sum = 0;
 let sum = 0;
 
+function select_dish(name, id, price) {
+    let soup = document.getElementById('soup_p');
+    let main_dish = document.getElementById('main_dish_p');
+    let drink = document.getElementById('drink_p');
 
-function select_dish(name, id, price){
     option1 = document.querySelector(`select[name='${name}'] option[value='1']`);
     option2 = document.querySelector(`select[name='${name}'] option[value='2']`);
     option3 = document.querySelector(`select[name='${name}'] option[value='3']`);
@@ -13,17 +16,23 @@ function select_dish(name, id, price){
     option3.removeAttribute('selected');
     option = document.querySelector(`select[name='${name}'] option[value='${id}']`);
     option.setAttribute('selected', true);
+    
+
     if (name == 'soup'){
         soup_sum = price;
+        soup.innerHTML=`${soup_array[id-1].name} - ${price} рублей`;
     }
     else if (name == 'main_dish'){
         main_dish_sum = price;
+        main_dish.innerHTML=`${dishes_array[id-1].name} - ${price} рублей`;
     }
     else{
         drink_sum = price;
+        drink.innerHTML=`${drinks_array[id-1].name} - ${price} рублей`;
     }
-    sum = soup_sum + main_dish_sum + drink_sum
-    document.getElementById('order_h2').innerHTML = `Ваш заказ стоит ${sum} рублей`
+
+    sum = soup_sum + main_dish_sum + drink_sum;
+    document.getElementById('order_h2').innerHTML = `Ваш заказ стоит ${sum} рублей`;
 }
 
 let soup_block = document.getElementById('soup')
@@ -79,7 +88,6 @@ drinks_array.forEach(dish => {
                     </div>
     `
 });
-
 drink_block.innerHTML = `
     <h2>Выберите напиток</h2>
     <div>
@@ -112,4 +120,6 @@ window.onload = function() {
     });
 
 }
+
+
 
