@@ -193,3 +193,19 @@ textarea{
 .dishes_input {
     display: none;
 }
+
+.filter-button{
+    all: unset;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+    color: green;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+*[disabled]{
+    color: black;
+    font-weight: bold;
+}
+

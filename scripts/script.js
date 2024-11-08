@@ -1,103 +1,67 @@
 let soup_sum = 0;
 let main_dish_sum = 0;
 let drink_sum = 0;
+let dessert_sum = 0;
+let salad_sum = 0;  
 let sum = 0;
 
+let arr = null;   
+
+let soup = document.getElementById('soup_p');
+let main_dish = document.getElementById('main_dish_p');
+let drink = document.getElementById('drink_p');
+let dessert = document.getElementById('dessert_p');
+let salad = document.getElementById('salad_p');
+
+
+
+load_beverages_blocks()
+load_main_dish_blocks()
+load_soup_blocks()
+load_salads()
+load_desserts()
 
 
 function select_dish(name, id, price) {
 
 
-    let soup = document.getElementById('soup_p');
-    let main_dish = document.getElementById('main_dish_p');
-    let drink = document.getElementById('drink_p');
+    if (name == 'soup') {arr = soups_array}
+    else if (name == 'main_dish') {arr = dishes_array}
+    else if (name == 'drink') {arr = drinks_array}
+    else if (name == 'salad') {arr = salads_array}
+    else if (name == 'dessert') {arr = desserts_array}
 
-    option1 = document.querySelector(`select[name='${name}'] option[value='1']`);
-    option2 = document.querySelector(`select[name='${name}'] option[value='2']`);
-    option3 = document.querySelector(`select[name='${name}'] option[value='3']`);
-    option1.removeAttribute('selected');
-    option2.removeAttribute('selected');
-    option3.removeAttribute('selected');
+    arr.forEach(el => {
+        document.querySelector(`select[name='${el.category}'] option[value='${el.select_id}']`).removeAttribute('selected')
+    });
     option = document.querySelector(`select[name='${name}'] option[value='${id}']`);
     option.setAttribute('selected', true);
-    
 
     if (name == 'soup'){
         soup_sum = price;
-        soup.innerHTML=`${soup_array[id-1].name} - ${price} рублей`;
+        soup.innerHTML=`${soups_array[id-1].name} - ${price} рублей`;
     }
     else if (name == 'main_dish'){
         main_dish_sum = price;
         main_dish.innerHTML=`${dishes_array[id-1].name} - ${price} рублей`;
     }
-    else{
+    else if (name == 'drink'){
         drink_sum = price;
         drink.innerHTML=`${drinks_array[id-1].name} - ${price} рублей`;
     }
+    else if (name == 'dessert'){
+        dessert_sum = price;
+        dessert.innerHTML=`${desserts_array[id-1].name} - ${price} рублей`;
+    }
+    else if (name = 'salad'){
+        salad_sum = price;
+        salad.innerHTML=`${salads_array[id-1].name} - ${price} рублей`;
+    }
 
-    sum = soup_sum + main_dish_sum + drink_sum;
+    sum = soup_sum + main_dish_sum + drink_sum + dessert_sum + salad_sum;
     document.getElementById('order_h2').innerHTML = `Ваш заказ стоит ${sum} рублей`;
 }
 
-let soup_block = document.getElementById('soup')
-let div_blocks = ''
-soup_array.forEach(dish => {
-    div_blocks += `
-                    <div name="food_block" onclick="select_dish('${dish.category}', ${soup_array.indexOf(dish)+1}, ${dish.price});" data-dish="${dish.keyword}">
-                    <img src="${dish.image}" alt="soup">
-                    <p class="price">${dish.price} рублей</p>
-                    <p class="name">${dish.name}</p>
-                    <p class="mass">${dish.count}</p>
-                    <button name="food_button">Добавить</button>
-                    </div>
-    `
-});
-soup_block.innerHTML = `
-    <h2>Выберите суп</h2>
-    <div>
-    ${div_blocks}
-    </div>
-`
-
-let main_dish_block = document.getElementById('main_dish')
-div_blocks = ''
-dishes_array.forEach(dish => {
-    div_blocks += `
-                    <div name="food_block" onclick="select_dish('${dish.category}', ${dishes_array.indexOf(dish)+1}, ${dish.price})" data-dish="${dish.keyword}">
-                    <img src="${dish.image}" alt="soup">
-                    <p class="price">${dish.price} рублей</p>
-                    <p class="name">${dish.name}</p>
-                    <p class="mass">${dish.count}</p>
-                    <button name="food_button">Добавить</button>
-                    </div>
-    `
-});
-main_dish_block.innerHTML = `
-    <h2>Выберите главное блюдо</h2>
-    <div>
-    ${div_blocks}
-    </div>
-`
-
-let drink_block = document.getElementById('drink')
-div_blocks = ''
-drinks_array.forEach(dish => {
-    div_blocks += `
-                    <div name="food_block" onclick="select_dish('${dish.category}', ${drinks_array.indexOf(dish)+1}, ${dish.price})" data-dish="${dish.keyword}">
-                    <img src="${dish.image}" alt="soup">
-                    <p class="price">${dish.price} рублей</p>
-                    <p class="name">${dish.name}</p>
-                    <p class="mass">${dish.count}</p>
-                    <button name="food_button">Добавить</button>
-                    </div>
-    `
-});
-drink_block.innerHTML = `
-    <h2>Выберите напиток</h2>
-    <div>
-    ${div_blocks}
-    </div>
-`
 
 
 
@@ -127,32 +91,35 @@ window.onload = function() {
 
 
     function reset_order() {
-        let soup_p = document.getElementById('soup_p');
-        let main_dish_p = document.getElementById('main_dish_p');
-        let drink_p = document.getElementById('drink_p');
-
         soup_p.innerHTML = "-- Выберите суп --";
         main_dish_p.innerHTML = "-- Выберите главное блюдо --";
         drink_p.innerHTML = "-- Выберите напиток --";
+        dessert_p.innerHTML = "-- Выберите дессерт --";
+        salad_p.innerHTML = "-- Выберите салат/стартер --";
 
         document.getElementById('order_h2').innerHTML = 'Ваш заказ';
 
         document.getElementById('nothing_is_chosen').style.display = 'block';
         document.getElementById('order_inputs').style.display = 'none';
 
+        arr = null;
+        sum = 0;
+
         soup_sum = 0;
         main_dish_sum = 0;
         drink_sum = 0;
-        sum = 0;
+        dessert_sum = 0;
+        salad_sum = 0;
     }
     let reset_button = document.getElementById('reset');
-    reset_button.addEventListener('click', reset_order)
+    reset_button.addEventListener('click', reset_order);
 
-    let div_dishes = document.getElementsByName('food_block');
+
+
+    /*let div_dishes = document.getElementsByName('food_block');
     div_dishes.forEach(block => {
         block.addEventListener('click', show_order_inp)
-    })
-
+    })*/
 }
 
 function show_order_inp() {
