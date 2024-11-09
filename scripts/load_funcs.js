@@ -1,4 +1,12 @@
 function load_soup_blocks(filter = null){
+    let filter_button = document.querySelector(`div[id='soup-filters'] button[id='active']`)
+    if (filter_button){
+        if (filter_button.getAttribute('data-kind') == filter){
+            filter = null;
+            filter_button.removeAttribute('id');
+        }
+    }
+
     if (filter){
         let filter_block = document.getElementById('soup-filters');
         let active_filter = filter_block.querySelector(`button[id='active']`)
@@ -37,6 +45,14 @@ function load_soup_blocks(filter = null){
 }
 
 function load_main_dish_blocks(filter = null){
+    let filter_button = document.querySelector(`div[id='dish-filters'] button[id='active']`)
+    if (filter_button){
+        if (filter_button.getAttribute('data-kind') == filter){
+            filter = null;
+            filter_button.removeAttribute('id');
+        }
+    }
+
     if (filter){
         let filter_block = document.getElementById('dish-filters');
         let active_filter = filter_block.querySelector(`button[id='active']`)
@@ -73,6 +89,14 @@ function load_main_dish_blocks(filter = null){
 }
 
 function load_salads(filter = null){
+    let filter_button = document.querySelector(`div[id='salad-filters'] button[id='active']`)
+    if (filter_button){
+        if (filter_button.getAttribute('data-kind') == filter){
+            filter = null;
+            filter_button.removeAttribute('id');
+        }
+    }
+
     if (filter){
         let filter_block = document.getElementById('salad-filters');
         let active_filter = filter_block.querySelector(`button[id='active']`)
@@ -110,6 +134,23 @@ function load_salads(filter = null){
 }
 
 function load_beverages_blocks(filter = null){
+    let filter_button = document.querySelector(`div[id='drink-filters'] button[id='active']`)
+    if (filter_button){
+        if (filter_button.getAttribute('data-kind') == filter){
+            filter = null;
+            filter_button.removeAttribute('id');
+        }
+    }
+
+    if (filter){
+        let filter_block = document.getElementById('drink-filters');
+        let active_filter = filter_block.querySelector(`button[id='active']`)
+        if (active_filter){active_filter.removeAttribute('id');}
+        let chosen_filter = filter_block.querySelector(`button[data-kind=${filter}]`);
+        chosen_filter.setAttribute('id', 'active');
+
+    }
+
     let drink_block = document.getElementById('drink')
     let drink_select_block = document.querySelector(`select[name="drink"]`);
     let div_blocks = ''
@@ -131,14 +172,21 @@ function load_beverages_blocks(filter = null){
 
     drink_block.innerHTML = `
         <h2>Выберите напиток</h2>
-        <div>
+        <div name='food_block'>
         ${div_blocks}
         </div>
     `
-
 }
 
 function load_desserts(filter = null){
+    let filter_button = document.querySelector(`div[id='dessert-filters'] button[id='active']`)
+    if (filter_button){
+        if (filter_button.getAttribute('data-kind') == filter){
+            filter = null;
+            filter_button.removeAttribute('id');
+        }
+    }
+
     if (filter){
         let filter_block = document.getElementById('dessert-filters');
         let active_filter = filter_block.querySelector(`button[id='active']`)

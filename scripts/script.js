@@ -23,8 +23,6 @@ load_desserts()
 
 
 function select_dish(name, id, price) {
-
-
     if (name == 'soup') {arr = soups_array}
     else if (name == 'main_dish') {arr = dishes_array}
     else if (name == 'drink') {arr = drinks_array}
@@ -32,8 +30,9 @@ function select_dish(name, id, price) {
     else if (name == 'dessert') {arr = desserts_array}
 
     arr.forEach(el => {
-        document.querySelector(`select[name='${el.category}'] option[value='${el.select_id}']`).removeAttribute('selected')
+        document.querySelector(`select[name='${el.category}'] option[value='${el.select_id}']`).removeAttribute('selected');
     });
+
     option = document.querySelector(`select[name='${name}'] option[value='${id}']`);
     option.setAttribute('selected', true);
 
@@ -129,6 +128,7 @@ function show_order_inp() {
     nothing.style.display = 'none';
     order_inps.style.display = 'block';
 }
+
 
 
 
