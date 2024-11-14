@@ -33,12 +33,27 @@ function close_notification(){
 }
 
 function pre_submit(){
-    if (sum == 0){trigger_notification('Ничего не выбрано. Выберите блюда для заказа')} 
-    else if (drink_sum == 0){trigger_notification('Выберите напиток')}
-    else if (drink_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
-    else if (soup_sum != 0 && (main_dish_sum == 0 && salad_sum == 0)){trigger_notification('Выберите главное блюдо/салат/стартер')}
-    else if (salad_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
-    else{document.getElementsByTagName('form')[0].submit();}
+    console.log("pre_submit worked")
+    let form = document.getElementsByTagName('form')[0]
+        if (sum == 0){trigger_notification('Ничего не выбрано. Выберите блюда для заказа')} 
+        else if (drink_sum == 0){trigger_notification('Выберите напиток')}
+        else if (drink_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
+        else if (soup_sum != 0 && (main_dish_sum == 0 && salad_sum == 0)){trigger_notification('Выберите главное блюдо/салат/стартер')}
+        else if (salad_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
+        else {
+            if (form.checkValidity()){ //проверка валидности формы
+                document.getElementsByTagName('form')[0].submit();
+            }
+            else {
+                let inputs_htmlcollection = (document.getElementById('client-info')).getElementsByTagName('input');
+                let inputs_arr = [].slice.call(inputs_htmlcollection);
+                inputs_arr.forEach(input => {
+                    if (input.required == true) {
+                        input.reportValidity();
+                    }
+                })
+            }
+        }
 }
 
 
