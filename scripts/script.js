@@ -39,7 +39,6 @@ function pre_submit(){
     else if (soup_sum != 0 && (main_dish_sum == 0 && salad_sum == 0)){trigger_notification('Выберите главное блюдо/салат/стартер')}
     else if (salad_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
     else{document.getElementsByTagName('form')[0].submit();}
-        
 }
 
 
