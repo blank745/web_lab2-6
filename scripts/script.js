@@ -14,12 +14,33 @@ let dessert = document.getElementById('dessert_p');
 let salad = document.getElementById('salad_p');
 
 
+load_all_blocks()
 
-load_beverages_blocks()
-load_main_dish_blocks()
-load_soup_blocks()
-load_salads()
-load_desserts()
+
+function trigger_notification(text){
+    let notification = document.createElement("div")
+    notification.id = "notification"
+    notification.innerHTML = '<p>Это всплывающее уведомление</p><button id="notifbutton" id="closeNotification" onclick="close_notification()">Окей &#128076;</button>'
+    document.body.appendChild(notification)
+
+    notification.getElementsByTagName('p')[0].innerHTML = text;
+}
+
+
+function close_notification(){
+    let notif = document.getElementById('notification');
+    notif.parentNode.removeChild(notif);
+}
+
+function pre_submit(){
+    if (sum == 0){trigger_notification('Ничего не выбрано. Выберите блюда для заказа')} 
+    else if (drink_sum == 0){trigger_notification('Выберите напиток')}
+    else if (drink_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
+    else if (soup_sum != 0 && (main_dish_sum == 0 && salad_sum == 0)){trigger_notification('Выберите главное блюдо/салат/стартер')}
+    else if (salad_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
+    else{document.getElementsByTagName('form')[0].submit();}
+        
+}
 
 
 function select_dish(name, id, price) {

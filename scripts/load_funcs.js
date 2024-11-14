@@ -126,7 +126,7 @@ function load_salads(filter = null){
     if (!filter){salad_select_block.innerHTML = select_block};
     
     salad_block.innerHTML = `
-        <h2>Выберите салат</h2>
+        <h2>Выберите салат/стартер</h2>
         <div name='food_block'>
         ${div_blocks}
         </div>
@@ -221,4 +221,12 @@ function load_desserts(filter = null){
         </div>
     `
 
+}
+
+function load_all_blocks(){
+    load_soup_blocks();
+    load_main_dish_blocks();
+    load_salads();
+    load_beverages_blocks();
+    load_desserts();
 }
