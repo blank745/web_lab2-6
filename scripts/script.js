@@ -33,7 +33,6 @@ function close_notification(){
 }
 
 function pre_submit(){
-    console.log("pre_submit worked")
     let form = document.getElementsByTagName('form')[0]
         if (sum == 0){trigger_notification('Ничего не выбрано. Выберите блюда для заказа')} 
         else if (drink_sum == 0){trigger_notification('Выберите напиток')}
