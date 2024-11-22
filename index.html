@@ -147,7 +147,7 @@
     </main>
     
     
-    <form method="post" action="https://httpbin.org/post">
+    <form id='construct_form' method="post" action="https://httpbin.org/post">
         <h1>Сделать заказ</h1>
         <div>
             <div id="order">
@@ -255,8 +255,7 @@
 
                 <div id = 'buttons-block'>
                     <button type="reset" id="reset">Сбросить</button> <!--листенер на сброс блюд-->
-                    <button type="button" onclick="pre_submit()">Отправить</button>
-                    <!-- <button type="button" onclick="pre_submit()">Отправить</button> рабочий вар(вводи параметры покупателя сразу, иначе он не проверяет и отсылает)-->
+                    <button type="submit">Отправить</button>
                 </div>
                 
             </div>
@@ -267,9 +266,8 @@
     <footer id="contacts">
         <p>Позвонить нам +7-000-000-00</p>
     </footer>
-    
-  
 
+    <script src="scripts/ajax.js" defer></script>
     <script src="scripts/arrays.js" defer></script>
     <script src="scripts/load_funcs.js" defer></script>
     <script src="scripts/script.js" defer></script>

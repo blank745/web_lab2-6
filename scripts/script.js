@@ -14,7 +14,29 @@ let dessert = document.getElementById('dessert_p');
 let salad = document.getElementById('salad_p');
 
 
-load_all_blocks()
+prepare_page()
+
+
+document.getElementById('construct_form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    console.log("listerer added");
+    let isValid = true; 
+
+    if (sum == 0){trigger_notification('Выберите что-нибудь для заказа'); isValid=false;}
+    else if (drink_sum == 0){trigger_notification('Выберите напиток'); isValid=false;}
+    else if (soup_sum != 0 && main_dish_sum == 0 && salad_sum == 0){trigger_notification('Выберите главное блюдо и салат'); isValid=false;}
+    else if (soup_sum == 0 || main_dish_sum == 0){trigger_notification('Выберите суп или главное блюдо'); isValid=false;}
+    else if (main_dish_sum == 0){trigger_notification('Выберите главное блюдо'); isValid=false;}
+
+    
+    if (isValid) {
+        if (this.checkValidity()) {
+            this.submit(); 
+        } else {
+            this.reportValidity();
+        }
+    }
+});
 
 
 function trigger_notification(text){
@@ -32,28 +54,6 @@ function close_notification(){
     notif.parentNode.removeChild(notif);
 }
 
-function pre_submit(){
-    let form = document.getElementsByTagName('form')[0]
-        if (sum == 0){trigger_notification('Ничего не выбрано. Выберите блюда для заказа')} 
-        else if (drink_sum == 0){trigger_notification('Выберите напиток')}
-        else if (drink_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
-        else if (soup_sum != 0 && (main_dish_sum == 0 && salad_sum == 0)){trigger_notification('Выберите главное блюдо/салат/стартер')}
-        else if (salad_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
-        else {
-            if (form.checkValidity()){ //проверка валидности формы
-                document.getElementsByTagName('form')[0].submit();
-            }
-            else {
-                let inputs_htmlcollection = (document.getElementById('client-info')).getElementsByTagName('input');
-                let inputs_arr = [].slice.call(inputs_htmlcollection);
-                inputs_arr.forEach(input => {
-                    if (input.required == true) {
-                        input.reportValidity();
-                    }
-                })
-            }
-        }
-}
 
 
 function select_dish(name, id, price) {
@@ -146,13 +146,6 @@ window.onload = function() {
     }
     let reset_button = document.getElementById('reset');
     reset_button.addEventListener('click', reset_order);
-
-
-
-    /*let div_dishes = document.getElementsByName('food_block');
-    div_dishes.forEach(block => {
-        block.addEventListener('click', show_order_inp)
-    })*/
 }
 
 function show_order_inp() {
