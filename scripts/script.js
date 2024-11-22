@@ -17,26 +17,28 @@ let salad = document.getElementById('salad_p');
 prepare_page()
 
 
-document.getElementById('construct_form').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    console.log("listerer added");
-    let isValid = true; 
-
-    if (sum == 0){trigger_notification('Выберите что-нибудь для заказа'); isValid=false;}
-    else if (drink_sum == 0){trigger_notification('Выберите напиток'); isValid=false;}
-    else if (soup_sum != 0 && main_dish_sum == 0 && salad_sum == 0){trigger_notification('Выберите главное блюдо и салат'); isValid=false;}
-    else if (soup_sum == 0 || main_dish_sum == 0){trigger_notification('Выберите суп или главное блюдо'); isValid=false;}
-    else if (main_dish_sum == 0){trigger_notification('Выберите главное блюдо'); isValid=false;}
-
-    
-    if (isValid) {
-        if (this.checkValidity()) {
-            this.submit(); 
-        } else {
-            this.reportValidity();
+function pre_submit(){
+    let form = document.getElementsByTagName('form')[0]
+        if (sum == 0){trigger_notification('Ничего не выбрано. Выберите блюда для заказа')} 
+        else if (drink_sum == 0){trigger_notification('Выберите напиток')}
+        else if (drink_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
+        else if (soup_sum != 0 && (main_dish_sum == 0 && salad_sum == 0)){trigger_notification('Выберите главное блюдо/салат/стартер')}
+        else if (salad_sum != 0 && (soup_sum == 0 && main_dish_sum == 0)){trigger_notification('Выберите суп и/или главное блюдо')}
+        else {
+            if (form.checkValidity()){ //проверка валидности формы
+                document.getElementsByTagName('form')[0].submit();
+            }
+            else {
+                let inputs_htmlcollection = (document.getElementById('client-info')).getElementsByTagName('input');
+                let inputs_arr = [].slice.call(inputs_htmlcollection);
+                inputs_arr.forEach(input => {
+                    if (input.required == true) {
+                        input.reportValidity();
+                    }
+                })
+            }
         }
-    }
-});
+}
 
 
 function trigger_notification(text){
@@ -56,39 +58,44 @@ function close_notification(){
 
 
 
-function select_dish(name, id, price) {
-    if (name == 'soup') {arr = soups_array}
+function select_dish(name, id, price, dish_name) {
+    if (name == 'soup') {arr = soup_array}
     else if (name == 'main_dish') {arr = dishes_array}
     else if (name == 'drink') {arr = drinks_array}
     else if (name == 'salad') {arr = salads_array}
     else if (name == 'dessert') {arr = desserts_array}
 
     arr.forEach(el => {
-        document.querySelector(`select[name='${el.category}'] option[value='${el.select_id}']`).removeAttribute('selected');
+        document.querySelector(`select[name='${el.category}'] option[value='${el.id}']`).removeAttribute('selected');
+        //console.log(el, el.select_id, el.id);
     });
 
+/*
+    select_to_change = document.querySelector(`select[name='${name}']`);
+    console.log(select_to_change)
+*/
     option = document.querySelector(`select[name='${name}'] option[value='${id}']`);
     option.setAttribute('selected', true);
 
     if (name == 'soup'){
         soup_sum = price;
-        soup.innerHTML=`${soups_array[id-1].name} - ${price} рублей`;
+        soup.innerHTML=`${dish_name} - ${price} рублей`;
     }
     else if (name == 'main_dish'){
         main_dish_sum = price;
-        main_dish.innerHTML=`${dishes_array[id-1].name} - ${price} рублей`;
+        main_dish.innerHTML=`${dish_name} - ${price} рублей`;
     }
     else if (name == 'drink'){
         drink_sum = price;
-        drink.innerHTML=`${drinks_array[id-1].name} - ${price} рублей`;
+        drink.innerHTML=`${dish_name} - ${price} рублей`;
     }
     else if (name == 'dessert'){
         dessert_sum = price;
-        dessert.innerHTML=`${desserts_array[id-1].name} - ${price} рублей`;
+        dessert.innerHTML=`${dish_name} - ${price} рублей`;
     }
     else if (name = 'salad'){
         salad_sum = price;
-        salad.innerHTML=`${salads_array[id-1].name} - ${price} рублей`;
+        salad.innerHTML=`${dish_name} - ${price} рублей`;
     }
 
     sum = soup_sum + main_dish_sum + drink_sum + dessert_sum + salad_sum;

@@ -140,14 +140,14 @@
         <div id="dessert-filters">
             <button class="filter-button" data-kind="small" onclick="load_desserts(filter='small')">Малая порция</button>
             <button class="filter-button" data-kind="medium" onclick="load_desserts(filter='medium')">Средняя порция</button>
-            <button class="filter-button" data-kind="big" onclick="load_desserts(filter='big')">Большая порция</button>
+            <button class="filter-button" data-kind="large" onclick="load_desserts(filter='large')">Большая порция</button>
         </div>
         <section id ='dessert'>
         </section>
     </main>
     
     
-    <form id='construct_form' method="post" action="https://httpbin.org/post">
+    <form method="post" action="https://httpbin.org/post">
         <h1>Сделать заказ</h1>
         <div>
             <div id="order">
@@ -255,7 +255,7 @@
 
                 <div id = 'buttons-block'>
                     <button type="reset" id="reset">Сбросить</button> <!--листенер на сброс блюд-->
-                    <button type="submit">Отправить</button>
+                    <button type="button" onclick="pre_submit()">Отправить</button>
                 </div>
                 
             </div>

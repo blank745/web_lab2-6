@@ -20,10 +20,10 @@ function load_soup_blocks(filter = null){
     let soup_select_block = document.querySelector(`select[name="soup"]`);
     let div_blocks = ''
     let select_block = '<option value="" selected disabled hidden>--Ничего не выбрано--</option>'
-    soups_array.forEach(dish => {
+    soup_array.forEach(dish => {
         if (dish.kind == filter || !filter){
         div_blocks += `
-                        <div onclick="select_dish('${dish.category}', ${dish.select_id}, ${dish.price}); show_order_inp()" data-dish="${dish.keyword}">
+                        <div onclick="select_dish('${dish.category}', ${dish.id}, ${dish.price}, '${dish.name}'); show_order_inp()" data-dish="${dish.keyword}">
                         <img src="${dish.image}" alt="soup">
                         <p class="price">${dish.price} рублей</p>
                         <p class="name">${dish.name}</p>
@@ -31,7 +31,7 @@ function load_soup_blocks(filter = null){
                         <button>Добавить</button>
                         </div>
         `}
-        select_block += `<option value=${dish.select_id}>${dish.name} ${dish.price} рублей</option>`
+        select_block += `<option value=${dish.id}>${dish.name} ${dish.price} рублей</option>`
     });
     if (!filter){soup_select_block.innerHTML = select_block};
 
@@ -69,7 +69,7 @@ function load_main_dish_blocks(filter = null){
     dishes_array.forEach(dish => {
         if (dish.kind == filter || !filter){
         div_blocks += `
-                        <div onclick="select_dish('${dish.category}', ${dish.select_id}, ${dish.price}); show_order_inp()" data-dish="${dish.keyword}">
+                        <div onclick="select_dish('${dish.category}', ${dish.id}, ${dish.price}, '${dish.name}'); show_order_inp()" data-dish="${dish.keyword}">
                         <img src="${dish.image}" alt="soup">
                         <p class="price">${dish.price} рублей</p>
                         <p class="name">${dish.name}</p>
@@ -77,7 +77,7 @@ function load_main_dish_blocks(filter = null){
                         <button>Добавить</button>
                         </div>
         `}
-        select_block += `<option value=${dish.select_id}>${dish.name} ${dish.price} рублей</option>`
+        select_block += `<option value=${dish.id}>${dish.name} ${dish.price} рублей</option>`
     });
     if (!filter){main_dish_select_block.innerHTML = select_block};
     main_dish_block.innerHTML = `
@@ -113,7 +113,7 @@ function load_salads(filter = null){
     salads_array.forEach(dish => {
         if (dish.kind == filter || !filter){
         div_blocks += `
-                        <div onclick="select_dish('${dish.category}', ${dish.select_id}, ${dish.price}); show_order_inp()" data-dish="${dish.keyword}">
+                        <div onclick="select_dish('${dish.category}', ${dish.id}, ${dish.price}, '${dish.name}'); show_order_inp()" data-dish="${dish.keyword}">
                         <img src="${dish.image}" alt="soup">
                         <p class="price">${dish.price} рублей</p>
                         <p class="name">${dish.name}</p>
@@ -121,7 +121,7 @@ function load_salads(filter = null){
                         <button>Добавить</button>
                         </div>
         `}
-        select_block += `<option value=${dish.select_id}>${dish.name} ${dish.price} рублей</option>`
+        select_block += `<option value=${dish.id}>${dish.name} ${dish.price} рублей</option>`
     });
     if (!filter){salad_select_block.innerHTML = select_block};
     
@@ -158,7 +158,7 @@ function load_beverages_blocks(filter = null){
     drinks_array.forEach(dish => {
         if (dish.kind == filter || !filter){
         div_blocks += `
-                        <div onclick="select_dish('${dish.category}', ${dish.select_id}, ${dish.price}); show_order_inp()" data-dish="${dish.keyword}">
+                        <div onclick="select_dish('${dish.category}', ${dish.id}, ${dish.price}, '${dish.name}'); show_order_inp()" data-dish="${dish.keyword}">
                         <img src="${dish.image}" alt="soup">
                         <p class="price">${dish.price} рублей</p>
                         <p class="name">${dish.name}</p>
@@ -166,7 +166,7 @@ function load_beverages_blocks(filter = null){
                         <button>Добавить</button>
                         </div>
         `}
-        select_block += `<option value=${dish.select_id}>${dish.name} ${dish.price} рублей</option>`
+        select_block += `<option value=${dish.id}>${dish.name} ${dish.price} рублей</option>`
     });
     drink_select_block.innerHTML = select_block
 
@@ -203,7 +203,7 @@ function load_desserts(filter = null){
     desserts_array.forEach(dish => {
         if (dish.kind == filter || !filter){
         div_blocks += `
-                        <div onclick="select_dish('${dish.category}', ${dish.select_id}, ${dish.price}); show_order_inp()" data-dish="${dish.keyword}">
+                        <div onclick="select_dish('${dish.category}', ${dish.id}, ${dish.price}, '${dish.name}'); show_order_inp()" data-dish="${dish.keyword}">
                         <img src="${dish.image}" alt="soup">
                         <p class="price">${dish.price} рублей</p>
                         <p class="name">${dish.name}</p>
@@ -211,7 +211,7 @@ function load_desserts(filter = null){
                         <button>Добавить</button>
                         </div>
         `}
-        select_block += `<option value=${dish.select_id}>${dish.name} ${dish.price} рублей</option>`
+        select_block += `<option value=${dish.id}>${dish.name} ${dish.price} рублей</option>`
     });
     if (!filter){dessert_select_block.innerHTML = select_block};
     dessert_block.innerHTML = `
